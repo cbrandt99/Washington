@@ -19,7 +19,7 @@ static WebDriver driver;
 
     public static void main(String[] args) 
     {
-        String mySqlUrl = "jdbc:mysql://127.0.0.1:3306/CarrierDatabase";
+        String mySqlUrl = "jdbc:sqlserver://cameronserver.database.windows.net:1433;database=Washington;user=cameron@cameronserver;password=C@meronS;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
         Connection sqlConnect;
         
         //hold results pulled in from each row
@@ -33,7 +33,7 @@ static WebDriver driver;
         
         //WebDriver set up and connection
         System.setProperty("webdriver.chrome.driver", 
-                "C:\\Users\\hines\\OneDrive\\Documents\\Design and Testing\\Selenium\\selenium-java-3.141.59\\chromedriver.exe");
+                "D:\\6 Sixth Quarter\\Programming Enterprise Applications\\Washington\\CarriersScraper\\selenium-java-3.141.59\\chromedriver.exe");
         System.out.println("Test initiated");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
@@ -49,8 +49,8 @@ static WebDriver driver;
 
         //try catch for jdbc connection
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            sqlConnect = DriverManager.getConnection(mySqlUrl, "root", "");
+            //Class.forName("com.jdbc.mysql");
+            sqlConnect = DriverManager.getConnection(mySqlUrl);
             
             //loop iterates through the table grabbing dot number, and saving the columns of tables in list
             for(int x = 0; x < rows.size(); x++)
