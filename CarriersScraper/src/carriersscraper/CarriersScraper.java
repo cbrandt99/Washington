@@ -1,11 +1,17 @@
 
 package carriersscraper;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +27,12 @@ static WebDriver driver;
     {
         String mySqlUrl = "jdbc:sqlserver://cameronserver.database.windows.net:1433;database=Washington;user=cameron@cameronserver;password=C@meronS;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
         Connection sqlConnect;
-        
+        String Json = "";
+        String lat = "";
+        String lng = "";
+        String next_record = null;
+        BufferedReader reader;
+        URLConnection sock;
         //hold results pulled in from each row
         String[] queryArray = new String[6]; 
         
@@ -33,7 +44,7 @@ static WebDriver driver;
         
         //WebDriver set up and connection
         System.setProperty("webdriver.chrome.driver", 
-                "D:\\6 Sixth Quarter\\Programming Enterprise Applications\\Washington\\CarriersScraper\\selenium-java-3.141.59\\chromedriver.exe");
+                "C:\\Users\\hines\\OneDrive\\Documents\\Design and Testing\\Selenium\\selenium-java-3.141.59\\chromedriver.exe");
         System.out.println("Test initiated");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
@@ -47,9 +58,9 @@ static WebDriver driver;
         WebElement carrierTable = driver.findElement(By.xpath("/html/body/font/table[2]"));
         List<WebElement> rows = carrierTable.findElements(By.tagName("tr"));
 
-        //try catch for jdbc connection
+        //try catch for jdbc/Azure connection
         try{
-            //Class.forName("com.jdbc.mysql");
+            //Class.forName("com.mysql.jdbc.Driver");
             sqlConnect = DriverManager.getConnection(mySqlUrl);
             
             //loop iterates through the table grabbing dot number, and saving the columns of tables in list
@@ -63,13 +74,45 @@ static WebDriver driver;
                 {
                     queryArray[y] = cols.get(y).getText();
                 }
-
+                
                 //if statement to ignore top table header and prepare sql insert
-                if(x > 0)
-                {
+                if (x > 0) {
+                    Json = "";
+                    String urlAddress = queryArray[1];
+                    int commaIndex = urlAddress.indexOf(',');
+                    urlAddress = urlAddress.substring(0, commaIndex - 1);
+                    urlAddress = urlAddress.replaceAll("\n", " ");
+                    urlAddress = urlAddress.replace(" ", "%20");
+                    URL url = new URL("http://www.mapquestapi.com/geocoding/v1/address?key=4LLKm5hPuvURO3ExzjBRda2Dp90Z3fv4&location=" + urlAddress);
+                    sock = url.openConnection();
+
+                    reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                    
+                    while ((next_record = reader.readLine()) != null) {
+                        Json += next_record;
+                    }
+                    JSONObject obj = new JSONObject(Json);
+                    JSONArray results = obj.optJSONArray("results");
+                    if (results != null) {
+                        for (int i = 0; i < results.length(); i++) {
+                            JSONObject objAtIndex = results.optJSONObject(i);
+                            if (objAtIndex != null) {
+                                JSONArray locations = objAtIndex.optJSONArray("locations");
+                                for (int j = 0; j < locations.length(); j++) {
+                                    JSONObject thing = locations.getJSONObject(j);
+                                    lat = Double.toString(thing.getJSONObject("latLng").getDouble("lat"));
+                                    lng = Double.toString(thing.getJSONObject("latLng").getDouble("lng"));
+                                }
+                            }
+                        }
+
+                    }
+                    reader.close();
+                    
+                    
                     queryArray[5] = usDots.getText();
-                    String query = " insert into Carriers (DotNumber, CarrierName, Address, OOS_Reason, OOS_Date, Status)"
-                    + " values (?, ?, ?, ?, ?,?)";
+                    String query = " insert into Carriers (DotNumber, CarrierName, Address, OOS_Reason, OOS_Date, Status, Latitude, Longitude)"
+                            + " values (?, ?, ?, ?, ?, ?, ?, ?)";
                     dotNumber = Integer.parseInt(queryArray[5].trim());
                     PreparedStatement preparedStmt = sqlConnect.prepareStatement(query);
                     preparedStmt.setInt(1, dotNumber);
@@ -78,18 +121,19 @@ static WebDriver driver;
                     preparedStmt.setString(4, queryArray[2]);
                     preparedStmt.setString(5, queryArray[3]);
                     preparedStmt.setString(6, queryArray[4]);
+                    preparedStmt.setString(7, lat);
+                    preparedStmt.setString(8, lng);
 
                     //executes sql insert statement to database
                     preparedStmt.execute();
-                    System.out.println(x + "/ 2128 Records Saved");
+                    System.out.println(x + " Records Saved");
                 }
-                
+
                 //increments xpath count for index each iteration
                 xpathCount++;
             }
-        }
-        catch(Exception ex)
-        {
+
+        } catch (Exception ex) {
             System.out.println(ex);
             System.exit(1);
         }
