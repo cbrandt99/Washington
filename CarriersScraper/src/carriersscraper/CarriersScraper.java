@@ -33,6 +33,7 @@ static WebDriver driver;
         String next_record = null;
         BufferedReader reader;
         URLConnection sock;
+        
         //hold results pulled in from each row
         String[] queryArray = new String[6]; 
         
@@ -54,6 +55,7 @@ static WebDriver driver;
         
         //Intentionally waits 5 seconds after loading page
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        
         //Create element for table, then a list of WebElements from that table
         WebElement carrierTable = driver.findElement(By.xpath("/html/body/font/table[2]"));
         List<WebElement> rows = carrierTable.findElements(By.tagName("tr"));
@@ -75,22 +77,30 @@ static WebDriver driver;
                     queryArray[y] = cols.get(y).getText();
                 }
                 
-                //if statement to ignore top table header and prepare sql insert
+                //If statement to ignore top table header and prepare sql insert
                 if (x > 0) {
                     Json = "";
+                    
+                    //Grabs address that is scraped
                     String urlAddress = queryArray[1];
+                    
+                    //Formats address to remove whitespace, new lines, and comma
                     int commaIndex = urlAddress.indexOf(',');
                     urlAddress = urlAddress.substring(0, commaIndex - 1);
                     urlAddress = urlAddress.replaceAll("\n", " ");
                     urlAddress = urlAddress.replace(" ", "%20");
+                    
+                    //Concatenated string for api URL and connection
                     URL url = new URL("http://www.mapquestapi.com/geocoding/v1/address?key=4LLKm5hPuvURO3ExzjBRda2Dp90Z3fv4&location=" + urlAddress);
                     sock = url.openConnection();
-
-                    reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                     
+                    //reads in each line of JSON and saves it as string
+                    reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
                     while ((next_record = reader.readLine()) != null) {
                         Json += next_record;
                     }
+                    
+                    //works through the JSON parsing out latitude and longitude
                     JSONObject obj = new JSONObject(Json);
                     JSONArray results = obj.optJSONArray("results");
                     if (results != null) {
@@ -109,7 +119,7 @@ static WebDriver driver;
                     }
                     reader.close();
                     
-                    
+                    //prepares statement for execution to database
                     queryArray[5] = usDots.getText();
                     String query = " insert into Carriers (DotNumber, CarrierName, Address, OOS_Reason, OOS_Date, Status, Latitude, Longitude)"
                             + " values (?, ?, ?, ?, ?, ?, ?, ?)";
