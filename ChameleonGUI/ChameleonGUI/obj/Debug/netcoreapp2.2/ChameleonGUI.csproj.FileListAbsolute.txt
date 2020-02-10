@@ -23,3 +23,14 @@ E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcor
 E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.cshtml.g.cs
 E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.RazorTargetAssemblyInfo.cache
 E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.RazorTargetAssemblyInfo.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\bin\Debug\netcoreapp2.2\ChameleonGUI.pdb
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\bin\Debug\netcoreapp2.2\ChameleonGUI.Views.dll
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\bin\Debug\netcoreapp2.2\ChameleonGUI.Views.pdb
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.Views.pdb
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.dll
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.pdb
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.csproj.CopyComplete
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\Carriers\Details.cshtml.g.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\Carriers\Index.cshtml.g.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Details.cshtml.g.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Index.cshtml.g.cs

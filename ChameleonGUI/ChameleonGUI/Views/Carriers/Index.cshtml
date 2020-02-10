@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ChameleonGUI.Models.Carriers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DotNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarrierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OosReason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OosDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DotNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarrierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OosReason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OosDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Number">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
