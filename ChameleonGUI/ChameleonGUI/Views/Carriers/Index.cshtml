@@ -1,72 +1,89 @@
-﻿@model IEnumerable<ChameleonGUI.Models.Carriers>
+﻿@model X.PagedList.IPagedList<ChameleonGUI.Models.Carriers>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewData["Title"] = "Index";
+    ViewBag.Title = "Carriers";
 }
 
-<h1>Index</h1>
+<h1>Carriers</h1>
+
+@using (Html.BeginForm("Index", "Student", FormMethod.Get))
+{
+    <p>
+        Search by Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DotNumber)
+                Dot Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarrierName)
+                Carrier Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OosReason)
+                OoS Reason
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OosDate)
+                OoS Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Status
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Latitude)
+                Latitude
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Longitude)
+                Longitude
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DotNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarrierName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OosReason)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OosDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Number">Details</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DotNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarrierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OosReason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OosDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Number">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<br />
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }), PagedListRenderOptions.MinimalWithItemCountText)

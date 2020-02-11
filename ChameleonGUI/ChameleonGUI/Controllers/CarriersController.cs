@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ChameleonGUI.Models;
+using X.PagedList;
 
 namespace ChameleonGUI.Controllers
 {
@@ -19,9 +20,31 @@ namespace ChameleonGUI.Controllers
         }
 
         // GET: Carriers
-        public async Task<IActionResult> Index()
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
-            return View(await _context.Carriers.ToListAsync());
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var carriers = from c in _context.Carriers
+                           select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                carriers = carriers.Where(c => c.CarrierName.Contains(searchString));
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(carriers.ToPagedList(pageNumber, pageSize));
+
         }
 
         // GET: Carriers/Details/5
