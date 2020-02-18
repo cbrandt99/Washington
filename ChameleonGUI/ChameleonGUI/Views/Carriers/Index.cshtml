@@ -38,12 +38,6 @@
             <th>
                 Status
             </th>
-            <th>
-                Latitude
-            </th>
-            <th>
-                Longitude
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -70,20 +64,17 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Latitude)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Longitude)
-                </td>
-                <td>
                     <a asp-action="Details" asp-route-id="@item.Number">Details</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>ul.pager { list-style-type: none; } ul.pager li { display: inline; } li.next { float: right; } li.previous { float: left; }</style>
+
+<p id="pageCount" style="text-align: center;">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }), PagedListRenderOptions.TwitterBootstrapPagerAligned)
+
 <br />
-
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }), PagedListRenderOptions.MinimalWithItemCountText)

@@ -41,7 +41,7 @@ namespace ChameleonGUI.Controllers
                 carriers = carriers.Where(c => c.CarrierName.Contains(searchString));
             }
 
-            int pageSize = 15;
+            int pageSize = 50;
             int pageNumber = (page ?? 1);
             return View(carriers.ToPagedList(pageNumber, pageSize));
 
