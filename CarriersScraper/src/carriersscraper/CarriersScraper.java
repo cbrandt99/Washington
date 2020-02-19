@@ -1,4 +1,3 @@
-
 package carriersscraper;
 
 import java.sql.Connection;
@@ -15,7 +14,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class CarriersScraper {
     
 static WebDriver driver;
-
 
     public static void main(String[] args) 
     {
