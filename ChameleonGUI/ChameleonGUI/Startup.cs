@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SmartBreadcrumbs.Extensions;
 
 namespace ChameleonGUI
 {
@@ -33,9 +34,15 @@ namespace ChameleonGUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddBreadcrumbs(GetType().Assembly, options => { options.DontLookForDefaultNode = true; });
+
             services.AddDbContext<WashingtonContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WashingtonDatabase")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

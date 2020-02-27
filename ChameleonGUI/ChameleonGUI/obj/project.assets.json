@@ -3121,6 +3121,23 @@
           }
         }
       },
+      "SmartBreadcrumbs/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.1.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.1.0",
+          "Microsoft.AspNetCore.Mvc.RazorPages": "2.1.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.1.0",
+          "Microsoft.AspNetCore.Razor": "2.1.0",
+          "Microsoft.AspNetCore.Razor.Runtime": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/SmartBreadcrumbs.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SmartBreadcrumbs.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -8426,6 +8443,18 @@
         "version.txt"
       ]
     },
+    "SmartBreadcrumbs/2.1.0": {
+      "sha512": "XW9nnPIvs+xds4vw4Ni7sZOGKNkRUTXd95MVjG+oOnFqiHbpQi+Nc3+jjUu/9u5NESU8Jgb603+Z1tsLa3GzSw==",
+      "type": "package",
+      "path": "smartbreadcrumbs/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/SmartBreadcrumbs.dll",
+        "smartbreadcrumbs.2.1.0.nupkg.sha512",
+        "smartbreadcrumbs.nuspec"
+      ]
+    },
     "System.AppContext/4.3.0": {
       "sha512": "fKC+rmaLfeIzUhagxY17Q9siv/sPrjjKcfNg1Ic8IlQkZLipo8ljcaZQu4VtI4Jqbzjc2VTjzGLF6WmsRXAEgA==",
       "type": "package",
@@ -13013,6 +13042,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.2",
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.4",
+      "SmartBreadcrumbs >= 2.1.0",
       "X.PagedList >= 7.9.0",
       "X.PagedList.Mvc.Core >= 7.9.1"
     ]
@@ -13091,6 +13121,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[2.2.4, )"
+          },
+          "SmartBreadcrumbs": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           },
           "X.PagedList": {
             "target": "Package",

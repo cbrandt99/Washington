@@ -24,7 +24,7 @@ using ChameleonGUI.Models;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6840cf60b9c13b977632f1900e7c16b89838e732", @"/Views/ActiveCarriers/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b3b7aed84e27477d46b9066b6b0c225924a8d1d", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a9877e22a5109db7351b9c805ec9795ccd3a3bae", @"/Views/_ViewImports.cshtml")]
     public class Views_ActiveCarriers_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ChameleonGUI.Models.ActiveCarriers>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Edit", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

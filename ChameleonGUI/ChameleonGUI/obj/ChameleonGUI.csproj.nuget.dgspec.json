@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[2.2.4, )"
             },
+            "SmartBreadcrumbs": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "X.PagedList": {
               "target": "Package",
               "version": "[7.9.0, )"

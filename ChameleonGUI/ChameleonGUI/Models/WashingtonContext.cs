@@ -27,6 +27,7 @@ namespace ChameleonGUI.Models
                 IConfigurationRoot configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
 
                 optionsBuilder.UseSqlServer(configuration.GetConnectionString("WashingtonDatabase"));
+
             }
         }
 
@@ -58,7 +59,15 @@ namespace ChameleonGUI.Models
                     .HasColumnName("HMFlag")
                     .HasMaxLength(200);
 
+                entity.Property(e => e.Latitude)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.LegalName).HasMaxLength(200);
+
+                entity.Property(e => e.Longitude)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MailingCity).HasMaxLength(200);
 
@@ -81,6 +90,8 @@ namespace ChameleonGUI.Models
                 entity.Property(e => e.NbrpowerUnit)
                     .HasColumnName("NBRPowerUnit")
                     .HasMaxLength(200);
+
+                entity.Property(e => e.Number).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Oicstate)
                     .HasColumnName("OICState")
@@ -116,26 +127,26 @@ namespace ChameleonGUI.Models
             modelBuilder.Entity<Carriers>(entity =>
             {
                 entity.HasKey(e => e.Number)
-                    .HasName("PK__carriers__78A1A19CE7608ADC");
+                    .HasName("PK__carriers__78A1A19C6FB16E9C");
 
                 entity.ToTable("carriers");
-
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(150)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.CarrierName)
                     .IsRequired()
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Latitude)
-                    .HasMaxLength(20)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Longitude)
-                    .HasMaxLength(20)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.OosDate)
@@ -150,8 +161,23 @@ namespace ChameleonGUI.Models
                     .HasMaxLength(150)
                     .IsUnicode(false);
 
+                entity.Property(e => e.StateAddress)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Status)
                     .HasMaxLength(35)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.StreetAddress)
+                    .IsRequired()
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Zipcode)
+                    .IsRequired()
+                    .HasMaxLength(150)
                     .IsUnicode(false);
             });
         }

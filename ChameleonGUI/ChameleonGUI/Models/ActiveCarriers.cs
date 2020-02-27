@@ -31,5 +31,8 @@ namespace ChameleonGUI.Models
         public string Oicstate { get; set; }
         public string NbrpowerUnit { get; set; }
         public string DriverTotal { get; set; }
+        public int Number { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

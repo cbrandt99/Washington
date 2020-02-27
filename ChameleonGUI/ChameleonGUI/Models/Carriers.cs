@@ -8,7 +8,10 @@ namespace ChameleonGUI.Models
         public int Number { get; set; }
         public int DotNumber { get; set; }
         public string CarrierName { get; set; }
-        public string Address { get; set; }
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public string StateAddress { get; set; }
+        public string Zipcode { get; set; }
         public string OosReason { get; set; }
         public string OosDate { get; set; }
         public string Status { get; set; }

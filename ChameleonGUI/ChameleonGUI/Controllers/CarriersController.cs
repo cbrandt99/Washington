@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ChameleonGUI.Models;
 using X.PagedList;
+using SmartBreadcrumbs.Attributes;
 
 namespace ChameleonGUI.Controllers
 {
@@ -19,6 +20,7 @@ namespace ChameleonGUI.Controllers
             _context = context;
         }
 
+        [Breadcrumb("Carriers", FromAction = "Index", FromController = typeof(HomeController))]
         // GET: Carriers
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
@@ -47,6 +49,7 @@ namespace ChameleonGUI.Controllers
 
         }
 
+        [Breadcrumb("Carrier Details", FromAction = "Index", FromController = typeof(HomeController))]
         // GET: Carriers/Details/5
         public async Task<IActionResult> Details(int? id)
         {

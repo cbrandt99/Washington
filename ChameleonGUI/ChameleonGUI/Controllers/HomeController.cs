@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ChameleonGUI.Models;
+using SmartBreadcrumbs.Attributes;
 
 namespace ChameleonGUI.Controllers
 {
     public class HomeController : Controller
     {
+        [DefaultBreadcrumb("Home")]
         public IActionResult Index()
         {
             return View();
