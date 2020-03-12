@@ -11,4 +11,6 @@ OOS_Date varchar(75) not null,
 Status varchar(35),
 Latitude varchar(100),
 Longitude varchar(100)
-)
+);
+
+--drop table carriers;

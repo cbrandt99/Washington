@@ -40,8 +40,6 @@ namespace BigDataGeocode
                 Carrier[] carrierArray = carrierList.ToArray();
                 List<Geocode> locationInfo = new List<Geocode>();
 
-                //Console.WriteLine("Length: " + carrierArray.Length);
-
                 for (int i = startNum; i < carrierArray.Length; i++)
                 {
                     Console.WriteLine(i + 1);
