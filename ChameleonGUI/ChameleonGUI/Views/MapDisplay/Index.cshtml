@@ -1,0 +1,95 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@model IEnumerable<ChameleonGUI.Models.ChameleonTable>
+
+@{
+    Layout = null;
+
+    Dictionary<int, string> markerColors = new Dictionary<int, string>();
+
+    markerColors.Add(1, "#0000FF");
+    markerColors.Add(2, "#008000");
+    markerColors.Add(3, "#FFFF00");
+    markerColors.Add(4, "#FFA500");
+    markerColors.Add(5, "#FF0000");
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+
+    <link rel="stylesheet" href="~/css/map.css" />
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            L.mapquest.key = '@Configuration.GetSection("API")["Mapquest"]';
+
+            // 'map' refers to a <div> element with the ID map
+            var map = L.mapquest.map('map', {
+                center: [47.7511, -120.7401],
+                layers: L.mapquest.tileLayer('map'),
+                zoom: 7
+            });
+
+            @foreach (var item in Model)
+            {
+
+        <text>
+
+                L.mapquest.textMarker([@Html.DisplayFor(modelItem => item.Latitude), @Html.DisplayFor(modelItem => item.Longitude)], {
+                text: `@Html.DisplayFor(modelItem => item.CurrentName)`,
+                subtext: '@Html.DisplayFor(modelItem => item.FormerName)',
+                position: 'right',
+                type: 'marker',
+                    icon: {
+                    primaryColor: '@markerColors[item.ConfidenceLevel.Value]',
+                    secondaryColor: '#333333',
+                    size: 'sm'
+                }
+            }).addTo(map);
+
+ 
+        </text>
+
+        }
+
+    });
+
+    </script>
+
+
+</body>
+</html>

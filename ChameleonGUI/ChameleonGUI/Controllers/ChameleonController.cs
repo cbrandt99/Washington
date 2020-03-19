@@ -9,22 +9,22 @@ using ChameleonGUI.Models;
 
 namespace ChameleonGUI.Controllers
 {
-    public class ActiveCarriersController : Controller
+    public class ChameleonController : Controller
     {
         private readonly WashingtonContext _context;
 
-        public ActiveCarriersController(WashingtonContext context)
+        public ChameleonController(WashingtonContext context)
         {
             _context = context;
         }
 
-        // GET: ActiveCarriers
+        // GET: Chameleon
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ActiveCarriers.ToListAsync());
+            return View(await _context.ChameleonTable.ToListAsync());
         }
 
-        // GET: ActiveCarriers/Details/5
+        // GET: Chameleon/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,19 +32,14 @@ namespace ChameleonGUI.Controllers
                 return NotFound();
             }
 
-            var activeCarriers = await _context.ActiveCarriers
-                .FirstOrDefaultAsync(m => m.DotNumber == id);
-            if (activeCarriers == null)
+            var chameleonTable = await _context.ChameleonTable
+                .FirstOrDefaultAsync(m => m.ChameleonId == id);
+            if (chameleonTable == null)
             {
                 return NotFound();
             }
 
-            return View(activeCarriers);
-        }
-
-        private bool ActiveCarriersExists(int id)
-        {
-            return _context.ActiveCarriers.Any(e => e.DotNumber == id);
+            return View(chameleonTable);
         }
     }
 }

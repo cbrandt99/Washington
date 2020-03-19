@@ -32,5 +32,6 @@ E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcor
 E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\ChameleonGUI.csproj.CopyComplete
 E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\Carriers\Details.cshtml.g.cs
 E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\Carriers\Index.cshtml.g.cs
-E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Details.cshtml.g.cs
-E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Index.cshtml.g.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\Chameleon\Details.cshtml.g.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\Chameleon\Index.cshtml.g.cs
+E:\Enterprise Applications\Washington\ChameleonGUI\ChameleonGUI\obj\Debug\netcoreapp2.2\Razor\Views\MapDisplay\Index.cshtml.g.cs
