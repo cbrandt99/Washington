@@ -85,6 +85,10 @@
             "X.PagedList.Mvc.Core": {
               "target": "Package",
               "version": "[7.9.1, )"
+            },
+            "bootstrap.sass": {
+              "target": "Package",
+              "version": "[4.4.1, )"
             }
           },
           "imports": [
