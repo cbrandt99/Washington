@@ -6,14 +6,6 @@
 @{
     Layout = null;
 
-    Dictionary<int, string> markerColors = new Dictionary<int, string>();
-
-    markerColors.Add(1, "#0000FF");
-    markerColors.Add(2, "#008000");
-    markerColors.Add(3, "#FFFF00");
-    markerColors.Add(4, "#FFA500");
-    markerColors.Add(5, "#FF0000");
-
 }
 
 <!DOCTYPE html>
@@ -75,7 +67,7 @@
                 position: 'right',
                 type: 'marker',
                     icon: {
-                    primaryColor: '@markerColors[item.ConfidenceLevel.Value]',
+                    primaryColor: '@ChameleonUtils.markerColors[item.ConfidenceLevel.Value]',
                     secondaryColor: '#333333',
                     size: 'sm'
                 }

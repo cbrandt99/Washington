@@ -19,9 +19,18 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: Chameleon
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.ChameleonTable.ToListAsync());
+
+            var companies = from c in _context.ChameleonTable
+                            select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                companies = companies.Where(c => c.CurrentName.Contains(searchString) || c.FormerName.Contains(searchString));
+            }
+
+            return View(companies.ToList());
         }
 
         // GET: Chameleon/Details/5
