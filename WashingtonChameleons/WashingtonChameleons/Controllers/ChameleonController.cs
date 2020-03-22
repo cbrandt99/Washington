@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WashingtonChameleons.Models;
+using PagedList;
 
 namespace WashingtonChameleons.Controllers
 {
@@ -19,8 +20,16 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: Chameleon
-        public async Task<IActionResult> Index(string searchString)
-        {
+        public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber)
+        {          
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            } else
+            {
+                searchString = currentFilter;
+            }
 
             var companies = from c in _context.ChameleonTable
                             select c;
@@ -30,7 +39,11 @@ namespace WashingtonChameleons.Controllers
                 companies = companies.Where(c => c.CurrentName.Contains(searchString) || c.FormerName.Contains(searchString));
             }
 
-            return View(companies.ToList());
+
+            companies = companies.OrderBy(c => c.CurrentName);
+
+            int pageSize = 12;
+            return View(await PaginatedList<ChameleonTable>.CreateAsync(companies.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Chameleon/Details/5
