@@ -1,0 +1,168 @@
+﻿@model WashingtonChameleons.Models.ActiveCarriers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ActiveCarriers</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DotNumber" class="control-label"></label>
+                <input asp-for="DotNumber" class="form-control" />
+                <span asp-validation-for="DotNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegalName" class="control-label"></label>
+                <input asp-for="LegalName" class="form-control" />
+                <span asp-validation-for="LegalName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dbaname" class="control-label"></label>
+                <input asp-for="Dbaname" class="form-control" />
+                <span asp-validation-for="Dbaname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarrierOperation" class="control-label"></label>
+                <input asp-for="CarrierOperation" class="form-control" />
+                <span asp-validation-for="CarrierOperation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hmflag" class="control-label"></label>
+                <input asp-for="Hmflag" class="form-control" />
+                <span asp-validation-for="Hmflag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pcflag" class="control-label"></label>
+                <input asp-for="Pcflag" class="form-control" />
+                <span asp-validation-for="Pcflag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phystreet" class="control-label"></label>
+                <input asp-for="Phystreet" class="form-control" />
+                <span asp-validation-for="Phystreet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phycity" class="control-label"></label>
+                <input asp-for="Phycity" class="form-control" />
+                <span asp-validation-for="Phycity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phystate" class="control-label"></label>
+                <input asp-for="Phystate" class="form-control" />
+                <span asp-validation-for="Phystate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phyzip" class="control-label"></label>
+                <input asp-for="Phyzip" class="form-control" />
+                <span asp-validation-for="Phyzip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phycountry" class="control-label"></label>
+                <input asp-for="Phycountry" class="form-control" />
+                <span asp-validation-for="Phycountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailingStreet" class="control-label"></label>
+                <input asp-for="MailingStreet" class="form-control" />
+                <span asp-validation-for="MailingStreet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailingCity" class="control-label"></label>
+                <input asp-for="MailingCity" class="form-control" />
+                <span asp-validation-for="MailingCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MainlingState" class="control-label"></label>
+                <input asp-for="MainlingState" class="form-control" />
+                <span asp-validation-for="MainlingState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailingZip" class="control-label"></label>
+                <input asp-for="MailingZip" class="form-control" />
+                <span asp-validation-for="MailingZip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailingCountry" class="control-label"></label>
+                <input asp-for="MailingCountry" class="form-control" />
+                <span asp-validation-for="MailingCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fax" class="control-label"></label>
+                <input asp-for="Fax" class="form-control" />
+                <span asp-validation-for="Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mcs150date" class="control-label"></label>
+                <input asp-for="Mcs150date" class="form-control" />
+                <span asp-validation-for="Mcs150date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mcs150mileage" class="control-label"></label>
+                <input asp-for="Mcs150mileage" class="form-control" />
+                <span asp-validation-for="Mcs150mileage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mcs150mileageYear" class="control-label"></label>
+                <input asp-for="Mcs150mileageYear" class="form-control" />
+                <span asp-validation-for="Mcs150mileageYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddDate" class="control-label"></label>
+                <input asp-for="AddDate" class="form-control" />
+                <span asp-validation-for="AddDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oicstate" class="control-label"></label>
+                <input asp-for="Oicstate" class="form-control" />
+                <span asp-validation-for="Oicstate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NbrpowerUnit" class="control-label"></label>
+                <input asp-for="NbrpowerUnit" class="form-control" />
+                <span asp-validation-for="NbrpowerUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverTotal" class="control-label"></label>
+                <input asp-for="DriverTotal" class="form-control" />
+                <span asp-validation-for="DriverTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label"></label>
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label"></label>
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
