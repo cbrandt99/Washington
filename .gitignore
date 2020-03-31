@@ -4,3 +4,7 @@ ChameleonGUI/.vs/ChameleonGUI/v16/Server/sqlite3/db.lock
 ChameleonGUI/ChameleonGUI/bin/Debug/netcoreapp2.2/appsettings.json
 WashingtonChameleons/WashingtonChameleons/appsettings.json
 WashingtonChameleons/.vs/WashingtonChameleons/v16/Server/sqlite3/db.lock
+WashingtonChameleons/WashingtonChameleons/bin/Release/netcoreapp2.2/appsettings.json
+WashingtonChameleons/WashingtonChameleons/bin/Release/netcoreapp2.2/appsettings.Development.json
+WashingtonChameleons/WashingtonChameleons/obj/Release/netcoreapp2.2/PubTmp/Out/appsettings.json
+WashingtonChameleons/WashingtonChameleons/obj/Release/netcoreapp2.2/PubTmp/Out/appsettings.Development.json

@@ -34,8 +34,5 @@ E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\
 E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\Chameleon\Details.cshtml.g.cs
 E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\Chameleon\Index.cshtml.g.cs
 E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\bin\Debug\netcoreapp2.2\libman.json
-E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Create.cshtml.g.cs
-E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Delete.cshtml.g.cs
 E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Details.cshtml.g.cs
-E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Edit.cshtml.g.cs
 E:\Enterprise Applications\Washington\WashingtonChameleons\WashingtonChameleons\obj\Debug\netcoreapp2.2\Razor\Views\ActiveCarriers\Index.cshtml.g.cs

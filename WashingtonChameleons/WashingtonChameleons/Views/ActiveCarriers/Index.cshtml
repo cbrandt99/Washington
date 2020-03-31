@@ -1,197 +1,103 @@
-﻿@model IEnumerable<WashingtonChameleons.Models.ActiveCarriers>
+﻿@model PaginatedList<WashingtonChameleons.Models.ActiveCarriers>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Active Carriers";
 }
 
-<h1>Index</h1>
+<h1>Active Carriers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<div id="toolbar" class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        @using (Html.BeginForm())
+        {
+            <input name="SearchString" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        }
+    </form>
+</div>
+<table class="table table-striped table-sm">
+    <thead class="table-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LegalName)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dbaname)
+                Street Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarrierOperation)
+                City
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Hmflag)
+                State
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pcflag)
+                Zip Code
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phystreet)
+                Phone #
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phycity)
+                Email Addresss
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phystate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phyzip)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phycountry)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MailingStreet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MailingCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MainlingState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MailingZip)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MailingCountry)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telephone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fax)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EmailAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mcs150date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mcs150mileage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mcs150mileageYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Oicstate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NbrpowerUnit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DriverTotal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longitude)
+                Date Added
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LegalName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dbaname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarrierOperation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hmflag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pcflag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phystreet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phycity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phystate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phyzip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phycountry)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MailingStreet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MailingCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MainlingState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MailingZip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MailingCountry)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mcs150date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mcs150mileage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mcs150mileageYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Oicstate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NbrpowerUnit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DriverTotal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DotNumber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DotNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DotNumber">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LegalName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phystreet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phycity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phystate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phyzip)
+                </td>
+                <td class="px-3">
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddDate)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.DotNumber">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+Page @Model.PageIndex / @Model.TotalPages
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

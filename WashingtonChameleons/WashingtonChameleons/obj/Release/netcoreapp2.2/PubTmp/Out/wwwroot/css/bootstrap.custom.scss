@@ -1,0 +1,14 @@
+﻿$theme-colors: (
+    "primary": #E50F17,
+    "secondary": #43464B,
+    "dark": #43464B 
+);
+
+// Boostrap
+@import "../lib/bootstrap/scss/bootstrap.scss";
+
+bg-red {
+
+   background-color: theme-color("primary");
+
+}

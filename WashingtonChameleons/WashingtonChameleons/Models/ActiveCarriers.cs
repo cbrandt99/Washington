@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WashingtonChameleons.Models
 {
@@ -27,6 +28,7 @@ namespace WashingtonChameleons.Models
         public DateTime? Mcs150date { get; set; }
         public string Mcs150mileage { get; set; }
         public int? Mcs150mileageYear { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? AddDate { get; set; }
         public string Oicstate { get; set; }
         public string NbrpowerUnit { get; set; }
