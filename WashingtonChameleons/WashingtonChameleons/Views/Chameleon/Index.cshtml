@@ -5,9 +5,9 @@
 
 <h1 class="display-4">Potential Chameleon Companies</h1>
 
-<div id="toolbar" class="navbar navbar-light bg-light">
+<div id="toolbar" class="btn-toolbar">
     <form class="form-inline">
-        <div class="btn-group px-1 pr-5" role="group" aria-label="toolbar">
+        <div class="btn-group px-2" role="group" aria-label="toolbar">
             <button id="btnList" type="button" class="btn btn-primary" disabled><i class="fas fa-list"></i></button>
             <button id="btnCard" type="button" class="btn btn-primary"><i class="fas fa-th"></i></button>
         </div>
@@ -18,6 +18,7 @@
         }
     </form>
 </div>
+<br />
 <div id="table" class="container">
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -44,10 +45,11 @@
                     State
                 </th>
                 <th>
-                    Zip
+                    Zip Code
                 </th>
                 <th class="px-3">
                     Confidence
+                    <a data-toggle="modal" data-target="#confidenceModal"><i class="fas fa-info-circle"></i></a>
                 </th>
                 <th></th>
             </tr>
@@ -115,6 +117,7 @@
                     </p>
                 </div>
                 <div class="card-body">
+                    <p>Confidence: <a data-toggle="modal" data-target="#confidenceModal"><i class="fas fa-info-circle"></i></a></p>
                     <span aria-label="@item.ConfidenceLevel.Value" style="color: @ChameleonUtils.markerColors[item.ConfidenceLevel.Value]">
 
                         @for (int i = 0; i < item.ConfidenceLevel.Value; i++)
@@ -138,21 +141,70 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-primary @prevDisabled">
-    Previous
-</a>
-Page @Model.PageIndex / @Model.TotalPages
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-primary @nextDisabled">
-    Next
-</a>
+<div class="btn-group px-1 pr-5" role="group" aria-label="toolbar">
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-primary @prevDisabled">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="btn"><span class="text-secondary">Page @Model.PageIndex / @Model.TotalPages</span></div>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-primary @nextDisabled">
+        <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+
+<!-- Confidence Rating Modal -->
+<div class="modal fade" id="confidenceModal" tabindex="-1" role="dialog" aria-labelledby="Confidence Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title" id="confidenceModalLabel">Confidence Levels</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Confidence Levels are based on the timeframe from when the former company was listed as out of service to when the new company was registered.</p>
+                <br />
+                <table class="table">
+                    <thead class="thead-dark">
+                        <th>Criteria</th>
+                        <th>Rating</th>
+                    </thead>
+                    <tbody>
+                        @{
+                            for (int x = 1; x <= 5; x++)
+                            {
+                                <tr>
+                                    <td>@ChameleonUtils.confidenceCriteria[x]</td>
+                                    <td>
+                                        <span style="color: @ChameleonUtils.markerColors[x]">
+                                            @for (int y = 1; y <= x; y++)
+                                            {
+                                                <i class="fas fa-square"></i>
+                                            }
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
 
@@ -182,3 +234,5 @@ Page @Model.PageIndex / @Model.TotalPages
     </script>
 
 }
+
+

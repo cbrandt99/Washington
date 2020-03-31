@@ -18,5 +18,16 @@ namespace WashingtonChameleons
 
         };
 
+        public static Dictionary<int, string> confidenceCriteria = new Dictionary<int, string>()
+        {
+
+            {1, "Company has the same address listed."},
+            {2, "Company was established at the same location within the same year." },
+            {3, "Company was established at the same location within six months." },
+            {4, "Company was established at the same location within three months." },
+            {5, "Company was established at the same location within the same month." }
+
+        };
+
     }
 }
