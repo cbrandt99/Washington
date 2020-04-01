@@ -7179,3 +7179,18 @@ a.text-dark:hover, a.text-dark:focus {
 
 bg-red {
   background-color: #E50F17; }
+
+.block {
+  color: #43464B; }
+
+@media (min-width: 1960px) {
+  .container {
+    max-width: 1900px; } }
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-columns {
+    column-count: 4; } }
+
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 5; } }

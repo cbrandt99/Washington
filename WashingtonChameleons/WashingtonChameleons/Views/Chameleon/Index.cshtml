@@ -3,24 +3,34 @@
     ViewBag.Title = "Possible Chameleon Companies";
 }
 
-<h1 class="display-4">Potential Chameleon Companies</h1>
-
-<div id="toolbar" class="btn-toolbar">
-    <form class="form-inline">
-        <div class="btn-group px-2" role="group" aria-label="toolbar">
-            <button id="btnList" type="button" class="btn btn-primary" disabled><i class="fas fa-list"></i></button>
-            <button id="btnCard" type="button" class="btn btn-primary"><i class="fas fa-th"></i></button>
+<div class="container-fluid w-75 mx-auto" style="width: 95% !important">
+    <h1 class="display-4">Potential Chameleon Companies</h1>
+    <hr />
+    <div id="toolbar" class="btn-toolbar">
+        <div class="row">
+            <div class="btn-group px-2 col-sm" role="group" aria-label="toolbar">
+                <button id="btnList" type="button" class="btn btn-primary" disabled><i class="fas fa-list"></i></button>
+                <button id="btnCard" type="button" class="btn btn-primary"><i class="fas fa-th"></i></button>
+            </div>
+            <form class="form-inline">
+                @using (Html.BeginForm())
+                {
+                    <input name="SearchString" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input id="rating" name="minRating" type="hidden" />
+                    <a id="level1" onclick="#"><i id="block1" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                    <a id="level2" onclick="#"><i id="block2" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                    <a id="level3" onclick="#"><i id="block3" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                    <a id="level4" onclick="#"><i id="block4" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                    <a id="level5" onclick="#"><i id="block5" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                }
+            </form>
         </div>
-        @using (Html.BeginForm())
-        {
-            <input name="SearchString" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-        }
-    </form>
+    </div>
 </div>
 <br />
-<div id="table" class="container">
-    <table class="table table-striped">
+<div id="table" class="w-75 mx-auto" style="width: 95% !important">
+    <table class="table table-striped mx-auto">
         <thead class="thead-dark">
             <tr>
                 <th>
@@ -36,7 +46,7 @@
                     Out of Service
                 </th>
                 <th>
-                    Addresss
+                    Address
                 </th>
                 <th>
                     City
@@ -101,12 +111,12 @@
     </table>
 </div>
 
-<div id="cards" class="container" style="display: none">
+<div id="cards" class="container-fluid w-75" style="display: none">
     <div class="card-columns">
 
         @foreach (var item in Model)
         {
-            <div class="card mb-3" style="max-width: 24rem">
+            <div class="card mb-3" style="max-width: 20rem">
                 <div class="card-header bg-dark text-light" style="height: 7rem"><b>@Html.DisplayFor(modelItem => item.CurrentName)</b><br />Registered: @Html.DisplayFor(modelItem => item.DateRegistered)</div>
                 <div class="card-header" style="height: 7rem">Formerly <b>@Html.DisplayFor(modelItem => item.FormerName)</b><br />Out of Service: @Html.DisplayFor(modelItem => item.DateOoS)</div>
                 <div class="card-body" style="height: 7rem">
@@ -141,11 +151,12 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<div class="btn-group px-1 pr-5" role="group" aria-label="toolbar">
+<div class="btn-group px-1 mx-auto pl-5" role="group" aria-label="toolbar">
     <a asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       asp-route-minRaring="@ViewData["minRating"]"
        class="btn btn-primary @prevDisabled">
         <i class="fas fa-arrow-left"></i>
     </a>
@@ -154,6 +165,7 @@
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       asp-route-minRaring="@ViewData["minRating"]"
        class="btn btn-primary @nextDisabled">
         <i class="fas fa-arrow-right"></i>
     </a>
@@ -165,17 +177,15 @@
         <div class="modal-content">
             <div class="modal-header bg-dark text-light">
                 <h5 class="modal-title" id="confidenceModalLabel">Confidence Levels</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
-                <p>Confidence Levels are based on the timeframe from when the former company was listed as out of service to when the new company was registered.</p>
+                <h2>Confidence Level Criteria</h2>
+                <div class="media border p-3"><div class="media-body">Criteria ratings are calculated by comparing the time between the closure and recreation of the chameleon company in question. Ratings of 1 are the least likely to be a potential chameleon company, while ratings of 5 are most likely. A high rating does not guarentee that the company is a chameleon company, but it makes it more likely.</div></div>
                 <br />
                 <table class="table">
                     <thead class="thead-dark">
-                        <th>Criteria</th>
-                        <th>Rating</th>
+                    <th>Criteria</th>
+                    <th>Rating</th>
                     </thead>
                     <tbody>
                         @{
@@ -200,7 +210,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -208,6 +218,7 @@
 
 @section Scripts {
 
+    <!-- Layout Toggle -->
     <script>
 
         $(document).ready(function () {
@@ -233,6 +244,175 @@
 
     </script>
 
+    <!-- Crtiera Helper -->
+    <script>
+
+        // Colors
+
+        var fc1;
+       var fc2;
+         var fc3;
+         var fc4;
+        var fc5;
+        $(document).ready(function () {        
+
+            $("#level1").hover(function () {
+
+                fc1 = $("#block1").css("color");
+                $("#block1").css("color", " @ChameleonUtils.markerColors[1] ");
+
+            }, function () {
+
+               $("#block1").css("color", fc1);
+
+            });
+
+            $("#level2").hover(function () {
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                $("#block1").css("color", " @ChameleonUtils.markerColors[2] ");
+                $("#block2").css("color", " @ChameleonUtils.markerColors[2] ");
+
+            }, function () {
+
+               $("#block1").css("color", fc1);
+               $("#block2").css("color", fc2);
+
+            });
+
+            $("#level3").hover(function () {
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                fc3 = $("#block3").css("color");
+                $("#block1").css("color", " @ChameleonUtils.markerColors[3] ");
+                $("#block2").css("color", " @ChameleonUtils.markerColors[3] ");
+                $("#block3").css("color", " @ChameleonUtils.markerColors[3] ");
+
+            }, function () {
+
+               $("#block1").css("color", fc1);
+               $("#block2").css("color", fc2);
+               $("#block3").css("color", fc3);
+            });
+
+            $("#level4").hover(function () {
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                fc3 = $("#block3").css("color");
+                fc4 = $("#block4").css("color");
+                $("#block1").css("color", " @ChameleonUtils.markerColors[4] ");
+                $("#block2").css("color", " @ChameleonUtils.markerColors[4] ");
+                $("#block3").css("color", " @ChameleonUtils.markerColors[4] ");
+                $("#block4").css("color", " @ChameleonUtils.markerColors[4] ");
+
+            }, function () {
+
+              $("#block1").css("color", fc1);
+               $("#block2").css("color", fc2);
+               $("#block3").css("color", fc3);
+               $("#block4").css("color", fc4);
+
+            });
+
+            $("#level5").hover(function () {
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                fc3 = $("#block3").css("color");
+                fc4 = $("#block4").css("color");
+                fc5 = $("#block5").css("color");
+                $("#block1").css("color", " @ChameleonUtils.markerColors[5] ");
+                $("#block2").css("color", " @ChameleonUtils.markerColors[5] ");
+                $("#block3").css("color", " @ChameleonUtils.markerColors[5] ");
+                $("#block4").css("color", " @ChameleonUtils.markerColors[5] ");
+                $("#block5").css("color", " @ChameleonUtils.markerColors[5] ");
+
+            }, function () {
+
+               $("#block1").css("color", fc1);
+               $("#block2").css("color", fc2);
+               $("#block3").css("color", fc3);
+               $("#block4").css("color", fc4);
+               $("#block5").css("color", fc5);
+
+            });
+
+            @if (ViewData["minRating"] != null) {
+
+                    <text>
+            $("#block" + "@ViewData["minRating"]").css("color", " @ChameleonUtils.markerColors[(int)ViewData["minRating"]] ");
+            $("#rating").val( @ViewData["minRating"] )
+            </text>
+
+            }
+
+            $("#level1").click(function () {
+
+                $("#rating").val(1);
+
+                fc1 = $("#block1").css("color");
+
+                $("#block2").css("color", "#43464B");
+                $("#block3").css("color", "#43464B");
+                $("#block4").css("color", "#43464B");
+                $("#block5").css("color", "#43464B");
+            });
+
+            $("#level2").click(function () {
+
+                $("#rating").val(2);
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+
+                $("#block3").css("color", "#43464B");
+                $("#block4").css("color", "#43464B");
+                $("#block5").css("color", "#43464B");
+            });
+
+            $("#level3").click(function () {
+
+                $("#rating").val(3);
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                fc3 = $("#block3").css("color");
+
+                $("#block4").css("color", "#43464B");
+                $("#block5").css("color", "#43464B");
+            });
+
+            $("#level4").click(function () {
+
+                $("#rating").val(4);
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                fc3 = $("#block3").css("color");
+                fc4 = $("#block4").css("color");
+
+                $("#block5").css("color", "#43464B");
+
+            });
+
+            $("#level5").click(function () {
+
+                $("#rating").val(5);
+
+                fc1 = $("#block1").css("color");
+                fc2 = $("#block2").css("color");
+                fc3 = $("#block3").css("color");
+                fc4 = $("#block4").css("color");
+                fc5 = $("#block5").css("color");
+
+            });
+
+        });
+
+    </script>
 }
 
 

@@ -20,7 +20,7 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: Chameleon
-        public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber)
+        public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber, int? minRating)
         {          
 
             if (searchString != null)
@@ -37,6 +37,11 @@ namespace WashingtonChameleons.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 companies = companies.Where(c => c.CurrentName.Contains(searchString) || c.FormerName.Contains(searchString));
+            }
+
+            if (minRating != null)
+            {
+                companies = companies.Where(c => c.ConfidenceLevel >= minRating);
             }
 
 
