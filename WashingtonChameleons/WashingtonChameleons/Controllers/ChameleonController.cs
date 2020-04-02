@@ -66,6 +66,26 @@ namespace WashingtonChameleons.Controllers
                 return NotFound();
             }
 
+            /* Get Potential Chameleon Company */
+            var CurrentCompany = from c in _context.ActiveCarriers.Where(c => c.Latitude.Equals(chameleonTable.Latitude) && c.Longitude.Equals(chameleonTable.Longitude))
+                                 select c;
+
+            ViewBag.CurrentDotNumber = CurrentCompany.First().DotNumber;
+            ViewBag.CurrentDrivers = CurrentCompany.First().DriverTotal;
+
+            /* View Original */
+            var OriginalCompany = from c in _context.Carriers.Where(c => c.Latitude.Equals(chameleonTable.Latitude) && c.Longitude.Equals(chameleonTable.Longitude))
+                                  select c;
+
+
+            ViewBag.OCDotNumber = OriginalCompany.First().DotNumber;
+            ViewBag.OCName = OriginalCompany.First().CarrierName;
+            ViewBag.OCStreet = OriginalCompany.First().StreetAddress;
+            ViewBag.OCCity = OriginalCompany.First().City;
+            ViewBag.OCState = OriginalCompany.First().StateAddress;
+            ViewBag.OCZip = OriginalCompany.First().Zipcode;
+            ViewBag.OCOOSReason = OriginalCompany.First().OosReason;
+
             return View(chameleonTable);
         }
 

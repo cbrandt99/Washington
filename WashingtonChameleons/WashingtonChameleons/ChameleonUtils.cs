@@ -10,6 +10,7 @@ namespace WashingtonChameleons
 
         public static Dictionary<int, string> markerColors = new Dictionary<int, string>() {
 
+            {0, "#000000"},
             {1, "#0000FF"},
             {2, "#008000"},
             {3, "#FFFF00"},

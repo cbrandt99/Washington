@@ -14,3 +14,24 @@ bg-red {
    background-color: theme-color("primary");
 
 }
+
+.block {
+
+    color: theme-color("secondary");
+
+}
+
+@media (min-width: 1960px) { .container {
+    max-width: 1900px;
+    }
+}
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+}

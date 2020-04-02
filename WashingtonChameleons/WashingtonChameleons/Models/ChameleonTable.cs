@@ -33,5 +33,6 @@ namespace WashingtonChameleons.Models
         [Display(Name = "Confidence Level")]
         public int? ConfidenceLevel { get; set; }
         public int ChameleonId { get; set; }
+
     }
 }
