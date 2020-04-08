@@ -81,6 +81,10 @@
             "PagedList.Mvc": {
               "target": "Package",
               "version": "[4.5.0, )"
+            },
+            "SmartBreadcrumbs": {
+              "target": "Package",
+              "version": "[2.1.0, )"
             }
           },
           "imports": [

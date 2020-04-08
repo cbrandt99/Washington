@@ -1,4 +1,5 @@
-﻿/*!
+﻿@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,700);
+/*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -297,6 +298,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
+  font-family: Nunito;
   font-weight: 500;
   line-height: 1.2; }
 
@@ -7177,9 +7179,6 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-bg-red {
-  background-color: #E50F17; }
-
 .block {
   color: #43464B; }
 
@@ -7187,10 +7186,10 @@ bg-red {
   .container {
     max-width: 1900px; } }
 
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .card-columns {
-    column-count: 4; } }
-
-@media (min-width: 1200px) {
-  .card-columns {
-    column-count: 5; } }
+@keyframes welcomeAnim {
+  0% {
+    background-color: #28a745; }
+  50% {
+    background-color: #b50c12; }
+  100% {
+    background-color: #28a745; } }

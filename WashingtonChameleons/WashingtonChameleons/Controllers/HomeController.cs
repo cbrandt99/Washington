@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 using WashingtonChameleons.Models;
 
 namespace WashingtonChameleons.Controllers
@@ -19,6 +20,7 @@ namespace WashingtonChameleons.Controllers
             _context = context;
         }
 
+        [DefaultBreadcrumb("<i class=\"fas fa-home\"></i>")]
         public IActionResult Index(string zipcode)
         {
             List<MapMarker> markers = new List<MapMarker>();
@@ -49,16 +51,11 @@ namespace WashingtonChameleons.Controllers
 
                 }
 
-
+                @ViewData["ZipCode"] = zipcode;
 
             }
 
             return View(markers);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

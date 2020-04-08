@@ -29,6 +29,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+    <PackageReference Include="SmartBreadcrumbs" Version="2.1.0" />
   </ItemGroup>
 
 </Project>

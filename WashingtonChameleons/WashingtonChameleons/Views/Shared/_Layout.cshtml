@@ -10,8 +10,7 @@
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/css/bootstrap.custom.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              
               crossorigin="anonymous"
               integrity="" />
     </environment>
@@ -23,7 +22,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Washington Chameleons</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -41,16 +40,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="ActiveCarriers" asp-action="Index">Active Carriers</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container-fluid">
-        <partial name="_CookieConsentPartial" />
+        <div class="container">
+            <breadcrumb></breadcrumb>
+        </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -58,7 +56,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - WashingtonChameleons - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <p>&copy; 2020 - WashingtonChameleons</p>
         </div>
     </footer>
 

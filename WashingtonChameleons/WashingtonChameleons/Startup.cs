@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WashingtonChameleons.Models;
+using SmartBreadcrumbs.Extensions;
 
 namespace WashingtonChameleons
 {
@@ -34,6 +35,7 @@ namespace WashingtonChameleons
             });
 
             services.AddDbContext<WashingtonContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WashingtonDatabase")));
+            services.AddBreadcrumbs(GetType().Assembly);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

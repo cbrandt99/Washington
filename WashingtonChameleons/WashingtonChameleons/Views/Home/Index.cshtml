@@ -14,22 +14,69 @@
 
 }
 
-<div class="container">
+<div id="welcome" class="container">
     <h1 class="display-4 text-center">Washington Chameleon Companies</h1>
+    <hr class="my-4">
     Welcome to Group Washington’s Chameleon Trucking Company Website. Our site is dedicated to helping you locate potential chameleon trucking companies in the state of Washington. But what exactly is a chameleon trucking company? Well in any business, there needs to be a good keeping of safety records. Trucking companies are even more so under pressure to keep safety records as their workers can endanger the lives of others on the highway. Some companies become deemed unsafe and suffer penalties. These companies often times become shut down due to their constant safety issues. These companies will turn around and secretly start a “new” trucking company that will go on to get approved and authorized. These companies will often have many of the same officers, owners, equipment, and even personnel as a previous company that had a bad safety record. Due to this, Group Washington has made our own way to determine the level of potential that an unsafe trucking company may be disguising themselves as a safer company instead. Thus, being a chameleon trucking company.
 
 </div>
 <br />
 <div class="container">
     <form class="form-inline">
-        @using (Html.BeginForm()) {
-        <input name="zipcode" class="form-control mr-sm-2" type="search" placeholder="Zip Code" aria-label="Zip Code" />
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-    }
+        @using (Html.BeginForm())
+        {
+            <input name="zipcode" class="form-control mr-sm-2" type="search" placeholder="Zip Code" aria-label="Zip Code" value="@ViewData["ZipCode"]" />
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+
+        }
     </form>
     <br />
     <div id="map" style="height: 50rem; width: auto;">
 
+    </div>
+    <table class="table table-sm table-striped">
+        <thead class="thead-dark">
+            <th>
+                @if (Model.Count > 0)
+                {
+                <a class="btn btn-primary my-2 my-sm-0 float-right" type="button" data-toggle="collapse" data-target="#listCollapse">Display List</a>
+                }
+            </th>
+        </thead>
+    </table>
+    <div id="listCollapse" class="collapse">
+        <table class="table table-sm table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Potential Chameleon?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentName)
+                        </td>
+                        <td>
+                            @if (item.color == 0)
+                            {
+                                <text>No</text>
+                            }
+                            else
+                            {
+                                <text>Yes</text>
+                            }
+                        </td>
+
+                        <td><a href="/@item.getURL()" class="btn btn-primary float-right">Details</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 

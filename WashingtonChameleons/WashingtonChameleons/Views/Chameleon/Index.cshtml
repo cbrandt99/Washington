@@ -17,11 +17,13 @@
                 {
                     <input name="SearchString" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <input id="rating" name="minRating" type="hidden" />
-                    <a id="level1" onclick="#"><i id="block1" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
-                    <a id="level2" onclick="#"><i id="block2" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
-                    <a id="level3" onclick="#"><i id="block3" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
-                    <a id="level4" onclick="#"><i id="block4" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
-                    <a id="level5" onclick="#"><i id="block5" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+
+                            <a id="level1" onclick="#"><i id="block1" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                            <a id="level2" onclick="#"><i id="block2" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                            <a id="level3" onclick="#"><i id="block3" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                            <a id="level4" onclick="#"><i id="block4" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+                            <a id="level5" onclick="#"><i id="block5" class="fas fa-square" style="color: #43464B"></i></a><pre> </pre>
+
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
                 }
             </form>
@@ -156,7 +158,7 @@
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       asp-route-minRaring="@ViewData["minRating"]"
+       asp-route-minRating="@ViewData["minRating"]"
        class="btn btn-primary @prevDisabled">
         <i class="fas fa-arrow-left"></i>
     </a>
@@ -165,7 +167,7 @@
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       asp-route-minRaring="@ViewData["minRating"]"
+       asp-route-minRating="@ViewData["minRating"]"
        class="btn btn-primary @nextDisabled">
         <i class="fas fa-arrow-right"></i>
     </a>

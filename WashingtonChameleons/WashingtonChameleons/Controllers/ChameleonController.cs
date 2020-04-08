@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WashingtonChameleons.Models;
 using PagedList;
+using SmartBreadcrumbs.Attributes;
 
 namespace WashingtonChameleons.Controllers
 {
@@ -20,12 +21,14 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: Chameleon
+        [Breadcrumb("Potential Chameleon Companies")]
         public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber, int? minRating)
         {          
 
             if (searchString != null)
             {
                 pageNumber = 1;
+
             } else
             {
                 searchString = currentFilter;
@@ -37,11 +40,16 @@ namespace WashingtonChameleons.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 companies = companies.Where(c => c.CurrentName.Contains(searchString) || c.FormerName.Contains(searchString));
+                ViewData["CurrentFilter"] = searchString;
             }
 
             if (minRating != null)
             {
                 companies = companies.Where(c => c.ConfidenceLevel >= minRating);
+                ViewData["MinRating"] = minRating;
+            } else
+            {
+                ViewData["MinRating"] = 1;
             }
 
 
@@ -52,6 +60,7 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: Chameleon/Details/5
+        [Breadcrumb("Details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

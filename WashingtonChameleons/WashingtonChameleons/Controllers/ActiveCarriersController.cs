@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WashingtonChameleons.Models;
 using PagedList;
+using SmartBreadcrumbs.Attributes;
 
 namespace WashingtonChameleons.Controllers
 {
@@ -20,6 +21,7 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: ActiveCarriers
+        [Breadcrumb("Active Carriers")]
         public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber)
         {
             if (searchString != null)
@@ -47,6 +49,7 @@ namespace WashingtonChameleons.Controllers
         }
 
         // GET: ActiveCarriers/Details/5
+        [Breadcrumb("Details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
