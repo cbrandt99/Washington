@@ -1,0 +1,130 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@model List<WashingtonChameleons.Models.MapMarker>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Mapquest {
+
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+
+}
+
+<div id="welcome" class="container">
+    <h1 class="display-4 text-center">Washington Chameleon Companies</h1>
+    <hr class="my-4">
+    Welcome to Group Washington’s Chameleon Trucking Company Website. Our site is dedicated to helping you locate potential chameleon trucking companies in the state of Washington. But what exactly is a chameleon trucking company? Well in any business, there needs to be a good keeping of safety records. Trucking companies are even more so under pressure to keep safety records as their workers can endanger the lives of others on the highway. Some companies become deemed unsafe and suffer penalties. These companies often times become shut down due to their constant safety issues. These companies will turn around and secretly start a “new” trucking company that will go on to get approved and authorized. These companies will often have many of the same officers, owners, equipment, and even personnel as a previous company that had a bad safety record. Due to this, Group Washington has made our own way to determine the level of potential that an unsafe trucking company may be disguising themselves as a safer company instead. Thus, being a chameleon trucking company.
+
+</div>
+<br />
+<div class="container">
+    <form class="form-inline">
+        @using (Html.BeginForm())
+        {
+            <input name="zipcode" class="form-control mr-sm-2" type="search" placeholder="Zip Code" aria-label="Zip Code" value="@ViewData["ZipCode"]" />
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+
+        }
+    </form>
+    <br />
+    <div id="map" style="height: 50rem; width: auto;">
+
+    </div>
+    <table class="table table-sm table-striped">
+        <thead class="thead-dark">
+            <th>
+                @if (Model.Count > 0)
+                {
+                <a class="btn btn-primary my-2 my-sm-0 float-right" type="button" data-toggle="collapse" data-target="#listCollapse">Display List</a>
+                }
+            </th>
+        </thead>
+    </table>
+    <div id="listCollapse" class="collapse">
+        <table class="table table-sm table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Potential Chameleon?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentName)
+                        </td>
+                        <td>
+                            @if (item.color == 0)
+                            {
+                                <text>No</text>
+                            }
+                            else
+                            {
+                                <text>Yes</text>
+                            }
+                        </td>
+
+                        <td><a href="/@item.getURL()" class="btn btn-primary float-right">Details</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            L.mapquest.key = '@Configuration.GetSection("API")["Mapquest"]';
+
+            // 'map' refers to a <div> element with the ID map
+            var map = L.mapquest.map('map', {
+                center: [47.7511, -120.7401],
+                layers: L.mapquest.tileLayer('hybrid'),
+                zoom: 7
+            });
+
+            @foreach (var item in Model)
+            {
+
+        <text>
+
+                L.mapquest.textMarker([@Html.DisplayFor(modelItem => item.Latitude), @Html.DisplayFor(modelItem => item.Longitude)], {
+                text: `@Html.DisplayFor(modelItem => item.CurrentName)`,
+                subtext: '@Html.DisplayFor(modelItem => item.FormerName)',
+                position: 'right',
+                type: 'marker',
+                    icon: {
+                    primaryColor: '@ChameleonUtils.markerColors[(int)item.color]',
+                    secondaryColor: '#333333',
+                    size: 'sm'
+                }
+                }).on('click', function () {
+
+                    window.location.href = " /@item.getURL() ";
+
+                }).addTo(map);
+
+
+        </text>
+
+        }
+
+    });
+
+    </script>
+
+
+}

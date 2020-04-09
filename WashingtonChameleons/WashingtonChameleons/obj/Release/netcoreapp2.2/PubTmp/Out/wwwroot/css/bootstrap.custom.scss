@@ -1,0 +1,36 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,700);
+$headings-font-family: Nunito;
+
+$theme-colors: ( "primary": #E50F17, "secondary": #43464B, "dark": #43464B );
+
+// Boostrap
+@import "../lib/bootstrap/scss/bootstrap.scss";
+
+// Confidence Level Block
+
+.block {
+
+    color: theme-color("secondary");
+
+}
+
+@media (min-width: 1960px) { .container {
+    max-width: 1900px;
+    }
+}
+
+@keyframes welcomeAnim {
+
+    0% {
+        background-color: theme-color("success");
+    }
+    50% {
+        background-color: #b50c12
+    }
+    100% {
+        background-color: theme-color("success");
+    }
+
+    
+
+}

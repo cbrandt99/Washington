@@ -1,0 +1,95 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@model WashingtonChameleons.Models.ActiveCarriers
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@section Mapquest {
+
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+
+}
+
+<div class="container">
+    <h1>Details - <span class="text-primary">@Html.DisplayFor(model => model.LegalName)</span></h1>
+    <h4>Active Carriers</h4>
+    <hr />
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="6" class="text-center" style="width: 24rem">Active Carrier</th>
+
+                </tr>
+                <tr>
+                    <th style="width: 5rem">Dot Number</th>
+                    <th style="width: 10rem">Current Name</th>
+                    <th style="width: 15rem">Address</th>
+                    <th style="width: 10rem">Date Registered</th>
+                    <th style="width: 10rem">Contact Info</th>
+                    <th style="width: 5rem">Driver Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.DotNumber)</td>
+                    <td>@Html.DisplayFor(model => model.LegalName)</td>
+                    <td>@Html.DisplayFor(model => model.Phystreet), @Html.DisplayFor(model => model.Phycity), @Html.DisplayFor(model => model.Phystate) @Html.DisplayFor(model => model.Phyzip)</td>
+                    <td>@Html.DisplayFor(model => model.AddDate)</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Telephone)
+                        <br />
+                        @Html.DisplayFor(model => model.EmailAddress)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.DriverTotal)</td>
+                </tr>
+                <tr>
+                    <div id="map" style="height: 25rem">
+
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a asp-action="Index"><button class="btn btn-primary">Back</button></a>
+        </div>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            L.mapquest.key = '@Configuration.GetSection("API")["Mapquest"]';
+
+            // 'map' refers to a <div> element with the ID map
+            var map = L.mapquest.map('map', {
+                center: [@Html.DisplayFor(model => model.Latitude), @Html.DisplayFor(model => model.Longitude)],
+                layers: L.mapquest.tileLayer('hybrid'),
+                zoom: 12
+            });
+
+
+                L.mapquest.textMarker([@Html.DisplayFor(model => model.Latitude), @Html.DisplayFor(model => model.Longitude)], {
+                text: `@Html.DisplayFor(model => model.LegalName)`,
+                subtext: '',
+                position: 'right',
+                type: 'marker',
+                    icon: {
+                    primaryColor: '#333333',
+                    secondaryColor: '#333333',
+                    size: 'sm'
+                }
+            }).addTo(map);
+
+
+        });
+
+    </script>
+
+}

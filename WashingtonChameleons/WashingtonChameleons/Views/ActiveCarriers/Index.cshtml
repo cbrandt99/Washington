@@ -1,0 +1,112 @@
+﻿@model PaginatedList<WashingtonChameleons.Models.ActiveCarriers>
+
+@{
+    ViewData["Title"] = "Active Carriers";
+}
+<div class="container-fluid w-75 mx-auto" style="width: 95% !important">
+    <h1 class="display-4">Active Carriers</h1>
+    <hr />
+    <div id="toolbar" class="btn-toolbar">
+        <div class="row">
+            <form class="form-inline">
+                @using (Html.BeginForm())
+                {
+                    <input name="SearchString" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<div id="table" class="w-75 mx-auto" style="width: 95% !important">
+    <table class="table table-striped table-sm mx-auto">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Street Address
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    Zip Code
+                </th>
+                <th>
+                    Phone #
+                </th>
+                <th>
+                    Email Addresss
+                </th>
+                <th>
+                    Date Added
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LegalName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phystreet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phycity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phystate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phyzip)
+                    </td>
+                    <td class="px-3">
+                        @Html.DisplayFor(modelItem => item.Telephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddDate)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.DotNumber" class="btn btn-sm btn-outline-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <div class="btn-group px-1 pr-5" role="group" aria-label="toolbar">
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-primary @prevDisabled">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="btn"><span class="text-secondary">Page @Model.PageIndex / @Model.TotalPages</span></div>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-primary @nextDisabled">
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
