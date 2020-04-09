@@ -29,7 +29,7 @@ using Microsoft.Extensions.Configuration;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5e9e675af6d4a56359969cfde02eaa8bd63b543f", @"/Views/Chameleon/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"21448ec97ced842455ecba56ea55ebf972259fc0", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"de240a2a0b7656abadea864ee297e9aa185166e1", @"/Views/_ViewImports.cshtml")]
     public class Views_Chameleon_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WashingtonChameleons.Models.ChameleonTable>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
